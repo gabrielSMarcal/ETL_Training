@@ -1,3 +1,4 @@
+from math import ceil
 from dotenv import load_dotenv
 import os
 import pandas as pd
@@ -19,7 +20,10 @@ class DadosRepositorios:
     def lista_repositorios(self):
         lista_repos = []
         
-        for page_num in range(1, 30):
+        response = requests.get(f'{self.api_base_url}/users/{self.owner}')
+        num_pages = ceil(response.json()['public_repos'] / 30)
+        
+        for page_num in range(1, num_pages + 1):
             try:
                 url = f'{self.api_base_url}/users/{self.owner}/repos?page={page_num}'
                 response = requests.get(url, headers=self.headers)
