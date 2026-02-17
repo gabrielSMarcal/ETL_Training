@@ -1,5 +1,6 @@
 from math import ceil
 from dotenv import load_dotenv
+
 import os
 import pandas as pd
 import requests
@@ -69,7 +70,7 @@ class DadosRepositorios:
         dados['nome_repositorio'] = nomes
         dados['linguagem'] = linguagens
         
-        dados.to_csv(f'data/linguagens_{self.owner}.csv', index=False)
+        dados.to_csv(f'data/linguagens_{self.owner}.csv')
         print(f'Dados de linguagens para {self.owner} salvos com sucesso!')
         
         return dados
